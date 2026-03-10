@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
 .App {
   text-align: center;
 }
@@ -35,4 +37,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.delius-regular {
+  font-family: "Delius", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "Delius", cursive;
 }

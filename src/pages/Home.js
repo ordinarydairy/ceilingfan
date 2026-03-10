@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import SealForm from '../components/SealForm'
+import Card from 'react-bootstrap/Card';
 
 export default function Home({ seals, addSeal }) {
   const sealsRef = useRef([])
@@ -35,11 +36,12 @@ export default function Home({ seals, addSeal }) {
 
   return (
     <div style={{ position: 'relative', width: '100vw', height: '100vh' }}>
+
       <SealForm addSeal={addSeal} />
 
       {sealsRef.current.map(seal => (
         <div key={seal.id} style={{ position: 'absolute', left: seal.x, top: seal.y }}>
-          <img src="/seal.png" width={80} />
+          <img src="/seal.png" width={100} />
         </div>
       ))}
     </div>
