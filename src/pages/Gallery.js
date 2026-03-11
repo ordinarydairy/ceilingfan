@@ -1,4 +1,5 @@
 import Card from 'react-bootstrap/Card';
+import Seal from '../components/Seal';
 
 export default function Gallery({ seals }) {
   if (seals.length === 0) return <p>No seals yet!</p>
@@ -13,7 +14,7 @@ export default function Gallery({ seals }) {
       {seals.map(seal => (
         <div key={seal.id}>
         <Card className="p-2 m-1" style={{alignItems: 'left'}}>
-          <center><img src="/seal.png" className="mb-2" width={100} /></center>
+          <center><Seal accessory={seal.accessory} width ={100} /></center>
           {/* render accessory on top here later */}
           <Card.Title style={{fontSize: getFontSize(seal.name)}}>{seal.name}</Card.Title>
           <Card.Subtitle>by {seal.user} </Card.Subtitle>

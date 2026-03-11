@@ -1,10 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
 import SealForm from '../components/SealForm'
+import Seal from '../components/Seal';
 import Card from 'react-bootstrap/Card';
 
 export default function Home({ seals, addSeal }) {
   const sealsRef = useRef([])
   const [, forceRender] = useState(0)
+
+  const [hoveredSeal, setHoveredSeal] = useState(null)
 
   useEffect(() => {
     sealsRef.current = seals.map(s => ({
@@ -40,8 +43,31 @@ export default function Home({ seals, addSeal }) {
       <SealForm addSeal={addSeal} />
 
       {sealsRef.current.map(seal => (
-        <div key={seal.id} style={{ position: 'absolute', left: seal.x, top: seal.y }}>
-          <img src="/seal.png" width={100} />
+        <div key={seal.id} style={{ position: 'absolute', left: seal.x, top: seal.y }}
+        onMouseEnter={() => setHoveredSeal(seal)}
+        onMouseLeave={() => setHoveredSeal(null)}
+        >
+          <Seal accessory={seal.accessory} width ={100} />
+
+          {hoveredSeal?.id === seal.id && (
+            <div style={{
+                position: 'absolute',
+                top: '-10px',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                background: 'white',
+                border: '1px solid #ccc',
+                borderRadius: '8px',
+                padding: '4px 10px',
+                whiteSpace: 'nowrap',
+                fontSize: '0.85rem',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+                pointerEvents: 'none',
+                
+            }}>
+                {seal.name}
+            </div>
+          )}
         </div>
       ))}
     </div>

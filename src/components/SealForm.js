@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { CardBody } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card';
 
-const ACCESSORIES = ['none', 'hat1', 'sunglasses', 'hat2']
+const ACCESSORIES = ['none', 'hat', 'glasses', 'stache', 'cone']
 
 export default function SealForm({ addSeal }) {
     const [name,setName] = useState('')
