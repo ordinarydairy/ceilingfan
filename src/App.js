@@ -25,12 +25,14 @@ export function App() {
     }, [])
 
 
-    async function addSeal(name, accessory){
+    async function addSeal(name, user, bio, accessory){
       await addDoc(collection(db, 'seals'), {
         id: seals.length + 1,
         name,
         user,
+        bio, 
         accessory,
+        birthday: new Date().toLocaleDateString(),
         x: Math.random() * window.innerWidth,
         y: Math.random() * window.innerHeight,
         vx: (Math.random() - 0.5) * 4,
@@ -41,14 +43,18 @@ export function App() {
 
   return (
     <BrowserRouter>
-      <nav style={{ position: 'relative', zIndex: 100 , paddingHorizontal: '30px'}}>
-        <Link to="/">Home</Link>
-        <Link to="/gallery">Gallery</Link>
+      <nav className="m-3" style={{ position: 'relative', zIndex: 100 , paddingHorizontal: '30px'}}>
+        <Link style={{paddingHorizontal: '30px'}} to="/">Home</Link>
+         &ensp;/&ensp;
+        <Link style={{paddingHorizontal: '30px'}} to="/gallery">Gallery</Link>
       </nav>
       <Routes>
         <Route path="/" element={<Home seals={seals} addSeal={addSeal}/>} />
         <Route path="/gallery" element={<Gallery seals={seals}/>} />
       </Routes>
+      <footer className="m-2">
+        made with  <img src="/seal.png" height={'10px'}></img>  by me &#40;claire&#41; • be good kids, don't make me add a report button
+      </footer>
     </BrowserRouter>
    
     

@@ -7,24 +7,27 @@ const ACCESSORIES = ['none', 'hat1', 'sunglasses', 'hat2']
 export default function SealForm({ addSeal }) {
     const [name,setName] = useState('')
     const [user,setUser] = useState('')
+    const [bio,setBio] = useState('')
     const [selectedAccessory, setSelectedAccessory] = useState('none')
 
   function handleSubmit() {
     if (!name.trim()) return
     if (!user.trim()) return // don't allow blank names
-    addSeal(name.trim(), (!user.trim()), selectedAccessory)
+    addSeal(name.trim(), user.trim(), bio.trim(), selectedAccessory)
     setName('')
     setUser('')
+    setBio('')
     setSelectedAccessory('none')
   }
 
   return (
     <div>
-    <Card className="bg-dark text-white m-4 p-2" style={{width: '18rem'}}>
+    <Card className="bg-dark text-white m-4 p-2" style={{width: '18rem', borderRadius: '20px'}}>
     <CardBody>
       Name: <input
         type="text"
-        placeholder="name your ceiling"
+        placeholder="your ceiling"
+        maxLength={20}
         value={name}
         onChange={e => setName(e.target.value)}
       />
@@ -32,8 +35,16 @@ export default function SealForm({ addSeal }) {
         type="text"
         placeholder="your name"
         value={user}
+        maxLength={12}
         onChange={e => setUser(e.target.value)}
       />
+      <input 
+        type="text" 
+        placeholder="bio"
+        value={bio}
+        maxLength={50}
+        style={{height: '50px'}}
+        onChange={e => setBio(e.target.value)}/>
 
       <div>
         {ACCESSORIES.map(accessory => (
@@ -49,7 +60,7 @@ export default function SealForm({ addSeal }) {
         ))}
       </div>
 
-      <button onClick={handleSubmit}>Add Seal</button>
+      <button onClick={handleSubmit}>add ceiling</button>
       </CardBody>
       </Card>
     </div>
